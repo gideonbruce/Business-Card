@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Business Card</string>
+
+    <string name="name_text">Bruce Otieno</string>
+    <string name="title_text">Business Card</string>
+    <string name="phone_number">+254713171456</string>
+    <string name="email">bruceotieno@gmail.com</string>
+    <string name="social_media">X: @bruceotieno</string>
+</resources>
