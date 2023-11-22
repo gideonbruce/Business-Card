@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -15,7 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.bruceotieno.businesscard.ui.theme.BusinessCardTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,22 +39,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BusinessCard() {
+fun BusinessCard(modifier: Modifier = Modifier) {
     Column {
+        val image = painterResource(R.drawable.xxxl)
         Box{
-            imagePainter = painterResource(R.drawable.xxxl)
+            Image(
+                painter = image,
+                contentDescription = null
+            )
         }
-        Row {
+        Column(modifier = modifier){
             NameBox(
                 name = stringResource(R.string.name_text),
                 title = stringResource(R.string.title_text)
             )
         }
-        Column {
+        Column(modifier = Modifier.padding(16.dp)) {
             ContactInfo(
                 telephoneNo = stringResource(R.string.phone_number),
-                email = stringResource(R.string.email),
-                socialMedia = stringResource(R.string.social_media)
+                socialMedia = stringResource(R.string.social_media),
+                email = stringResource(R.string.email)
             )
         }
     }
@@ -60,24 +67,27 @@ fun BusinessCard() {
 @Composable
 fun NameBox(
     name: String,
-    title: String
+    title: String,
+    modifier: Modifier = Modifier.fillMaxSize(1f)
 ) {
-    Column{
-        Image(painter = image, contentDescription = null)
-        Text(
-            text = name
-        )
-        Text(
-            text= title
-        )
-    }
+    Text(
+        text = name,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(8.dp),
+        fontSize = 24.sp
+    )
+    Text(
+        text = title,
+        modifier = Modifier.padding(8.dp)
+    )
 }
 
 @Composable
 fun ContactInfo(
     telephoneNo: String,
+    socialMedia: String,
     email: String,
-    socialMedia: String
+    modifier: Modifier = Modifier.padding(8.dp)
 ) {
     Text(
         text = telephoneNo
@@ -89,6 +99,7 @@ fun ContactInfo(
         text = email
     )
 }
+
 
 @Preview(showBackground = true)
 @Composable
